@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Hero, SearchBar, CustomFilter } from "@/components";
 import { fetchCars } from "@/utils";
+import { CarCard } from "@/components";
 
 export default async function Home() {
   const allCars = await fetchCars();
@@ -22,9 +23,20 @@ export default async function Home() {
           </div>
         </div>
         {!isDataEmpty ? (
-          <section>WE ahve Cars</section>
+          <section>
+            <div className="home__cars-wrapper">
+              {allCars?.map((car) => (
+                <CarCard car={car} />
+              ))}
+            </div>
+          </section>
         ) : (
-          <div>OOOps no cars avaialable</div>
+          <div className="home__error-container">
+            <h2 className="text-black text-xl font-bold">
+              OOOps no cars available
+            </h2>
+            <p>{allCars?.message}</p>
+          </div>
         )}
       </div>
     </main>
