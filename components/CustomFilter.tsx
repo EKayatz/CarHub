@@ -3,17 +3,18 @@ import { useState, Fragment } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Transition, Listbox } from "@headlessui/react";
-import { CustomFilterProps } from "@/types";
+import { CustomFilterProps, OptionProps } from "@/types";
 import { type } from "os";
 import { updateSearchParam } from "@/utils";
 
 const CustomFilter = ({ title, options }: CustomFilterProps) => {
-  const Router = useRouter();
-  const [selected, setSelected] = useState(options[0]);
+  const router = useRouter();
+  const [selected, setSelected] = useState<OptionProps>(options[0]);
 
-  const handleUpdateParams = (e: { type: string; value: string }) => {
-    const newPathname = updateSearchParam(title, e.value.toLowerCase());
-    Router.push(newPathname);
+  const handleUpdateParams = (e: OptionProps) => {
+    const value = typeof e === "string" ? e : e.value;
+    const newPathname = updateSearchParam(title, value.toLowerCase());
+    router.push(newPathname);
   };
 
   return (
