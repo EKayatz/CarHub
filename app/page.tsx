@@ -3,7 +3,7 @@ import { fetchCars } from "@/utils";
 import { CarCard, ShowMore } from "@/components";
 import { fuels, manufacturers, yearsOfProduction } from "@/constants";
 
-export default async function Home({ searchParams }) {
+export default async function Home({ searchParams }: { searchParams: any }) {
   const allCars = await fetchCars({
     manufacture: searchParams.manufacturers || "",
     year: searchParams.year || 2022,
@@ -35,7 +35,10 @@ export default async function Home({ searchParams }) {
                 <CarCard car={car} />
               ))}
             </div>
-            <ShowMore pageNumber={(searchParams.limit || 10) / 10} isNext={(searchParams.limit || 10) > allCars.length} />
+            <ShowMore
+              pageNumber={(searchParams.limit || 10) / 10}
+              isNext={(searchParams.limit || 10) > allCars.length}
+            />
           </section>
         ) : (
           <div className="home__error-container">
@@ -45,7 +48,6 @@ export default async function Home({ searchParams }) {
             <p>{allCars?.message}</p>
           </div>
         )}
-
       </div>
     </main>
   );
