@@ -1,6 +1,6 @@
-# MERN Dashboard
+# CarHub
 
-Web application that enables property management via a MERN dashboard with Refine. Where you can add, edit, update and remove properties with comprehensive CRUD functionality and a MongoDB database.
+Web-based platform that allows users to search, for their dream car. Programmed with Next.js, TS, and TailwindCSS. I used the Ninja API to fetch the data.
 
 ## Run it Locally
 
